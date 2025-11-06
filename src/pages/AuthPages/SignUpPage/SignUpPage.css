@@ -1,0 +1,165 @@
+.sign-up-page {
+    display: flex;
+    min-height: 100vh;
+    align-items: flex-start;
+    justify-content: center;
+    background: linear-gradient(180deg, #121212, #383838);
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.sign-up-page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    background: linear-gradient(180deg, #1F1F1F, #343434);
+    margin-top: 165px;
+    border: 1px solid #505050;
+    gap: 14px;
+    border-radius: 14px;
+    padding: 60px 65px 130px;
+    width: 100%;
+    max-width: 440px;
+    min-width: 240px;
+}
+
+.sign-up-page .sign-up-page-content .text-header {
+    color: white;
+    opacity: 0.8;
+    font-family: 'Roboto', sans-serif;
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+
+.sign-up-page .sign-up-page-content .text-input {
+    color: white;
+    opacity: 0.5;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+
+.sign-up-page .sign-up-page-content .data-input {
+    display: flex;
+    flex: 1;
+    background: transparent;
+    border: 1px solid #CAC4D0;
+    border-radius: 8px;
+    padding: 0.5em 0.6em;
+    margin-bottom: 6px;
+    color: white;
+    opacity: 0.9;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+}
+
+.sign-up-page .sign-up-page-content .data-input:focus {
+    outline: none;
+    border: 1px solid #CAC4D0;
+}
+
+.sign-up-page .sign-up-page-content .form-error {
+    margin: 0;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 14px;
+    color: #ff5e4e;
+}
+
+.sign-up-page .sign-up-page-content .continue-button {
+    width: 100%;
+    background-color: #FF4739;
+    font-family: 'RobotoMono', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    padding: 0.4em 0;
+    border-radius: 11px;
+    border: none;
+    margin-top: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+
+.sign-up-page .sign-up-page-content .continue-button:hover {
+    background-color: #ff5e4e;
+}
+
+.sign-up-page .sign-up-page-content .continue-button:active {
+    transform: scale(0.98);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    .sign-up-page-content {
+        margin-top: 80px;
+        padding: 40px 30px 60px;
+        max-width: 90%;
+    }
+
+    .loading-page-content .text-header {
+        font-size: clamp(22px, 6vw, 32px);
+    }
+
+    .loading-page-content .continue-button {
+        font-size: 16px;
+        padding: 0.8em 0;
+    }
+}
+
+
+
+/* Auth redirect links */
+.auth-redirect {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #6b7280;
+}
+
+.auth-redirect-link {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    color: #ff4639a2;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-redirect a:hover {
+    text-decoration: underline;
+}
+
+/* Loading container for protected routes */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f9fafb;
+}
+
+.loading-spinner {
+    font-size: 1.25rem;
+    color: #6b7280;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Disabled button state */
+.continue-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

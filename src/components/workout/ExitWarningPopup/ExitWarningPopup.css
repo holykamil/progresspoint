@@ -1,0 +1,160 @@
+/* Exit Warning Overlay */
+.exit-warning-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Exit Warning Container */
+.exit-warning-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    min-width: 400px;
+    max-width: 90vw;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -45%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Exit Warning Popup */
+.exit-warning-popup {
+    background-color: #1e1e1e;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.exit-warning-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 16px 0;
+    text-align: center;
+}
+
+.exit-warning-message {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    margin: 0 0 28px 0;
+    text-align: center;
+}
+
+/* Buttons Container */
+.exit-warning-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.exit-warning-cancel-button,
+.exit-warning-discard-button {
+    flex: 1;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Cancel Button */
+.exit-warning-cancel-button {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.exit-warning-cancel-button:hover {
+    background-color: #3d3d3d;
+}
+
+/* Discard Button - Red/Destructive */
+.exit-warning-discard-button {
+    background-color: #ff5757;
+    color: #ffffff;
+}
+
+.exit-warning-discard-button:hover {
+    background-color: #ff6b6b;
+}
+
+.exit-warning-cancel-button:active,
+.exit-warning-discard-button:active {
+    transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .exit-warning-container {
+        min-width: 320px;
+    }
+
+    .exit-warning-popup {
+        padding: 28px 24px;
+    }
+
+    .exit-warning-title {
+        font-size: 22px;
+    }
+
+    .exit-warning-message {
+        font-size: 15px;
+        margin-bottom: 24px;
+    }
+
+    .exit-warning-buttons {
+        flex-direction: column;
+    }
+
+    .exit-warning-cancel-button,
+    .exit-warning-discard-button {
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .exit-warning-container {
+        min-width: 280px;
+    }
+
+    .exit-warning-popup {
+        padding: 24px 20px;
+    }
+
+    .exit-warning-title {
+        font-size: 20px;
+    }
+
+    .exit-warning-message {
+        font-size: 14px;
+    }
+}

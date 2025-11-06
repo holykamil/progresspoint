@@ -1,0 +1,235 @@
+/* Submit Workout Container */
+.submit-workout-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    min-width: 500px;
+    max-width: 90vw;
+    animation: slideIn 0.3s ease-out;
+}
+
+.submit-workout-popup {
+    background-color: #1e1e1e;
+    border-radius: 16px;
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.submit-workout-title {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    text-align: center;
+}
+
+/* Form Rows */
+.submit-workout-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.submit-workout-row:last-of-type {
+    border-bottom: none;
+}
+
+.submit-workout-label {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    min-width: 100px;
+}
+
+.submit-workout-input {
+    flex: 1;
+    background-color: #252525;
+    border: 2px solid #333333;
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #ffffff;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 16px;
+    transition: border-color 0.2s;
+}
+
+.submit-workout-input:focus {
+    outline: none;
+    border-color: #ff5757;
+}
+
+.submit-workout-input::placeholder {
+    color: #666666;
+}
+
+.submit-workout-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.submit-workout-duration {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    flex: 1;
+    text-align: right;
+}
+
+/* Error Message */
+.submit-workout-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #fca5a5;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Buttons */
+.submit-workout-buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.submit-workout-cancel-button,
+.submit-workout-submit-button {
+    flex: 1;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.submit-workout-cancel-button {
+    background-color: transparent;
+    color: #ff5757;
+    border: 2px solid #ff5757;
+}
+
+.submit-workout-cancel-button:hover:not(:disabled) {
+    background-color: rgba(255, 87, 87, 0.1);
+}
+
+.submit-workout-cancel-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.submit-workout-submit-button {
+    background-color: #ffffff;
+    color: #1e1e1e;
+}
+
+.submit-workout-submit-button:hover:not(:disabled) {
+    background-color: #f0f0f0;
+    transform: translateY(-1px);
+}
+
+.submit-workout-submit-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -45%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .submit-workout-container {
+        min-width: 400px;
+    }
+
+    .submit-workout-popup {
+        padding: 32px 28px;
+    }
+
+    .submit-workout-title {
+        font-size: 28px;
+    }
+
+    .submit-workout-row {
+        padding: 16px 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .submit-workout-container {
+        min-width: 90vw;
+    }
+
+    .submit-workout-popup {
+        padding: 28px 24px;
+    }
+
+    .submit-workout-title {
+        font-size: 24px;
+    }
+
+    .submit-workout-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .submit-workout-label {
+        min-width: auto;
+    }
+
+    .submit-workout-duration {
+        text-align: left;
+    }
+
+    .submit-workout-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .submit-workout-popup {
+        padding: 24px 20px;
+        gap: 24px;
+    }
+
+    .submit-workout-title {
+        font-size: 22px;
+    }
+
+    .submit-workout-label,
+    .submit-workout-input,
+    .submit-workout-duration {
+        font-size: 15px;
+    }
+
+    .submit-workout-cancel-button,
+    .submit-workout-submit-button {
+        font-size: 15px;
+        padding: 12px 20px;
+    }
+}

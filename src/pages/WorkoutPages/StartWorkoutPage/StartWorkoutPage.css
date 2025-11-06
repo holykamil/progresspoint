@@ -1,0 +1,266 @@
+.start-workout-page {
+    background: linear-gradient(180deg, #121212, #383838);
+    min-width: 440px;
+    border: solid 1px red;
+    color: white;
+}
+
+.start-workout-page-content {
+    position: relative;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin: 3% 14%;
+    gap: 14px;
+    border-radius: 14px;
+    padding: 1px 0px 1px 0px;
+    border: solid 1px red;
+}
+
+.workout-launcher-header {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 28px;
+    min-height: 60px;
+    align-self: center;
+}
+
+/* Workout Launcher Container */
+.workout-launcher {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 8% 0 8%;
+}
+
+
+/* Common Container Styles */
+.repeat-workout-container,
+.create-workout-container {
+    background: linear-gradient(180deg, #1F1F1F, #343434);
+    border: solid, 1px, #50505075;
+    border-radius: 16px;
+    padding: 26px 40px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    transition: background-color 0.2s;
+    box-sizing: border-box;
+    animation: slideInFromLeft 0.6s ease forwards;
+
+}
+
+.repeat-workout-container:hover,
+.create-workout-container:hover {
+    background-color: #333333;
+}
+
+/* Icon Styles */
+.repeat-workout-icon,
+.create-workout-icon {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+/* Info Container Styles */
+.repeat-workout-info,
+.create-workout-info {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Title Styles */
+.launcher-item {
+    font-family: "Roboto", sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    color: #ffffff;
+}
+
+/* Description Styles */
+.launcher-item-description {
+    font-family: "RobotoMonoSemiBold", sans-serif;
+    font-size: 14px;
+    margin: 0;
+    color: #9e9e9e;
+}
+
+/* Button Styles */
+.repeat-workout-button,
+.create-workout-button {
+    font-family: 'RobotoMono', sans-serif;
+    padding: 8px 22px;
+    border-radius: 15px;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+/* Repeat Workout Button - White */
+.repeat-workout-button {
+    background-color: #ffffff;
+    color: #1e1e1e;
+}
+
+.repeat-workout-button:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.repeat-workout-button:active {
+    transform: translateY(0);
+}
+
+/* Create Workout Button - Red/Coral */
+.create-workout-button {
+    background-color: #ff4739;
+    color: #ffffff;
+}
+
+.create-workout-button:hover {
+    background-color: #ff4739;
+    transform: translateY(-2px);
+}
+
+.create-workout-button:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+
+    .repeat-workout-container,
+    .create-workout-container {
+        padding: 28px 32px;
+        gap: 20px;
+    }
+
+    .repeat-workout-icon,
+    .create-workout-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .launcher-item {
+        font-size: 22px;
+    }
+
+    .launcher-item-description {
+        font-size: 15px;
+    }
+
+    .repeat-workout-button,
+    .create-workout-button {
+        padding: 12px 32px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .workout-launcher {
+        gap: 20px;
+    }
+
+    .repeat-workout-container,
+    .create-workout-container {
+        padding: 24px 28px;
+        gap: 16px;
+    }
+
+    .repeat-workout-icon,
+    .create-workout-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .launcher-item {
+        font-size: 20px;
+    }
+
+    .launcher-item-description {
+        font-size: 14px;
+    }
+
+    .repeat-workout-button,
+    .create-workout-button {
+        padding: 10px 28px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .repeat-workout-container,
+    .create-workout-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px;
+        gap: 20px;
+    }
+
+    .repeat-workout-icon,
+    .create-workout-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .launcher-item {
+        font-size: 18px;
+    }
+
+    .launcher-item-description {
+        font-size: 13px;
+    }
+
+    .repeat-workout-button,
+    .create-workout-button {
+        width: 100%;
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .workout-launcher {
+        gap: 16px;
+    }
+
+    .repeat-workout-container,
+    .create-workout-container {
+        padding: 20px;
+        gap: 16px;
+        border-radius: 12px;
+    }
+
+    .repeat-workout-icon,
+    .create-workout-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .launcher-item {
+        font-size: 16px;
+    }
+
+    .launcher-item-description {
+        font-size: 12px;
+    }
+
+    .repeat-workout-button,
+    .create-workout-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}

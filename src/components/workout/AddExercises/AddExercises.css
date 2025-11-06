@@ -1,0 +1,354 @@
+/* Add Exercise Container */
+.add-exercise-container {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    max-height: 80vh;
+    background-color: #1e1e1e;
+    border-radius: 16px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+/* Close Button */
+.close-popup-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+    color: #ffffff;
+    z-index: 10;
+}
+
+.close-popup-button:hover {
+    opacity: 0.7;
+}
+
+.close-icon {
+    width: 32px;
+    height: 32px;
+}
+
+/* Header */
+.add-exercise-container-header {
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: #ffffff;
+    padding: 28px 32px;
+    padding-right: 60px;
+    border-bottom: 1px solid #2a2a2a;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    background-color: #1e1e1e;
+    z-index: 5;
+}
+
+/* Exercise Container */
+.exercise-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 26px 32px;
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #2a2a2a;
+    transition: background-color 0.2s;
+    box-sizing: border-box;
+}
+
+.exercise-container:last-child {
+    border-bottom: none;
+}
+
+.exercise-container:hover {
+    background-color: #252525;
+}
+
+/* Exercise Icon */
+.exercise-icon {
+    width: 42px;
+    height: 42px;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+/* Exercise Name */
+.exercise-name {
+    font-family: 'RobotoMonoSemiBold', monospace, sans-serif;
+    flex: 1;
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* Add Exercise Button */
+.add-exercise-button {
+    width: 44px;
+    height: 44px;
+    background-color: #ff5757;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+    padding: 0;
+}
+
+.add-exercise-button:hover {
+    background-color: #ff6b6b;
+    transform: scale(1.05);
+}
+
+.add-exercise-button:active {
+    transform: scale(0.95);
+}
+
+/* Loading State */
+.exercises-loading {
+    padding: 60px 32px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.exercises-loading p {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 16px;
+    margin: 0;
+}
+
+.exercises-loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error State */
+.exercises-error {
+    padding: 60px 32px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.exercises-error p {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 16px;
+    color: #fca5a5;
+    margin: 0 0 16px 0;
+}
+
+.retry-button {
+    margin-top: 12px;
+    padding: 10px 20px;
+    background: rgba(255, 87, 87, 0.2);
+    border: 2px solid #ff5757;
+    border-radius: 8px;
+    color: #ff5757;
+    cursor: pointer;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.retry-button:hover {
+    background: rgba(255, 87, 87, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Empty State */
+.exercises-empty {
+    padding: 60px 32px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.exercises-empty p {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Scrollbar Styling */
+.add-exercise-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.add-exercise-container::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+.add-exercise-container::-webkit-scrollbar-thumb {
+    background: #3d3d3d;
+    border-radius: 4px;
+}
+
+.add-exercise-container::-webkit-scrollbar-thumb:hover {
+    background: #4d4d4d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .close-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .add-exercise-container-header {
+        font-size: 26px;
+        padding: 24px 28px;
+        padding-right: 56px;
+    }
+
+    .exercise-container {
+        padding: 22px 28px;
+        gap: 18px;
+    }
+
+    .exercise-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .exercise-name {
+        font-size: 17px;
+    }
+
+    .add-exercise-button {
+        width: 40px;
+        height: 40px;
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 600px) {
+    .add-exercise-container {
+        border-radius: 12px;
+        max-width: 95vw;
+    }
+
+    .close-popup-button {
+        top: 16px;
+        right: 16px;
+    }
+
+    .add-exercise-container-header {
+        font-size: 22px;
+        padding: 20px 24px;
+        padding-right: 52px;
+    }
+
+    .exercise-container {
+        padding: 20px 24px;
+        gap: 16px;
+    }
+
+    .exercise-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .exercise-name {
+        font-size: 16px;
+    }
+
+    .add-exercise-button {
+        width: 38px;
+        height: 38px;
+        font-size: 24px;
+        border-radius: 8px;
+    }
+
+    .exercises-loading,
+    .exercises-error,
+    .exercises-empty {
+        padding: 50px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .close-icon {
+        width: 26px;
+        height: 26px;
+    }
+
+    .add-exercise-container-header {
+        font-size: 20px;
+        padding: 18px 20px;
+        padding-right: 50px;
+    }
+
+    .exercise-container {
+        padding: 18px 20px;
+        gap: 14px;
+    }
+
+    .exercise-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .exercise-name {
+        font-size: 15px;
+    }
+
+    .add-exercise-button {
+        width: 36px;
+        height: 36px;
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 400px) {
+    .add-exercise-container-header {
+        font-size: 18px;
+        padding: 16px 18px;
+        padding-right: 48px;
+    }
+
+    .exercise-container {
+        padding: 16px 18px;
+        gap: 12px;
+    }
+
+    .exercise-icon {
+        width: 26px;
+        height: 26px;
+    }
+
+    .exercise-name {
+        font-size: 14px;
+    }
+
+    .add-exercise-button {
+        width: 34px;
+        height: 34px;
+        font-size: 20px;
+    }
+}

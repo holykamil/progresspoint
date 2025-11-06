@@ -1,0 +1,135 @@
+/* History Workout Card Styles */
+.history-workout-container {
+    background: rgba(40, 40, 40, 0.6);
+    border-radius: 12px;
+    padding: 36px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 32px;
+
+    /* Animation properties */
+    opacity: 0;
+    animation: slideInFromLeft 0.6s ease forwards;
+}
+
+.history-workout-container.selected {
+    background: rgba(85, 65, 65, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.247);
+
+
+    /* Animation properties */
+    opacity: 0;
+    animation: slideInFromLeft 0.6s ease forwards;
+}
+
+.history-workout-container.selected:hover {
+    background: rgba(85, 65, 65, 0.8);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.history-workout-container:hover {
+    background: rgba(50, 50, 50, 0.8);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.history-workout-container:active {
+    transform: translateY(0);
+}
+
+/* Workout Note */
+.history-workout-note {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+/* Workout Date */
+.history-workout-date {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Workout Exercises */
+.history-workout-exercises {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .history-workout-container {
+        padding: 18px 20px;
+        border-radius: 10px;
+    }
+
+    .history-workout-note {
+        font-size: 18px;
+    }
+
+    .history-workout-date {
+        font-size: 12px;
+
+    }
+
+    .history-workout-exercises {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 600px) {
+    .history-workout-container {
+        padding: 16px 18px;
+    }
+
+    .history-workout-note {
+        font-size: 17px;
+    }
+
+    .history-workout-exercises {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .history-workout-container {
+        padding: 14px 16px;
+        border-radius: 8px;
+    }
+
+    .history-workout-note {
+        font-size: 16px;
+    }
+
+    .history-workout-date {
+        font-size: 11px;
+    }
+
+    .history-workout-exercises {
+        font-size: 11px;
+    }
+}

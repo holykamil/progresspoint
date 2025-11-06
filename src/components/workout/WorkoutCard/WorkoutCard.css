@@ -1,0 +1,264 @@
+/* Workout Card Styles */
+.workout-minimal-container {
+    background: rgba(40, 40, 40, 0.8);
+    border-radius: 16px;
+    padding: 8px 36px 14px 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 25px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    /* Animation properties */
+    opacity: 0;
+    animation: slideInFromLeft 0.6s ease forwards;
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.workout-minimal-container:hover {
+    background: rgba(50, 50, 50, 0.9);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.workout-minimal-container:active {
+    transform: translateY(0);
+}
+
+/* Left Column - Main Content */
+.workout-minimal-left-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Right Column - Account Logo */
+.workout-minimal-right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+.workout-minimal-account-logo-container {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 6px;
+}
+
+.workout-minimal-account-logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* General Info */
+.workout-minimal-general-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 4px;
+}
+
+.workout-minimal-username {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(255, 255, 255, 0.8);
+    margin-top: 10px;
+}
+
+.workout-minimal-date {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 14px;
+}
+
+/* Note Row */
+.workout-minimal-note-row {
+    margin-bottom: 4px;
+}
+
+.workout-minimal-note {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 19px;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Exercises Row */
+.workout-minimal-exercises-row {
+    margin-bottom: 2px;
+}
+
+.workout-minimal-exercises {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Sets Row */
+.workout-minimal-sets-row {
+    display: flex;
+    align-items: center;
+}
+
+.workout-minimal-sets {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Loading State */
+.workout-list-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 40px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.workout-list-loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error State */
+.workout-list-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    color: #fca5a5;
+    text-align: center;
+}
+
+.retry-button {
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    transition: all 0.2s;
+}
+
+.retry-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Empty State */
+.workout-list-empty {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.workout-list-empty p {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+}
+
+.workout-list-empty small {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .workout-minimal-account-logo-container {
+        width: 48px;
+        height: 48px;
+    }
+
+    .workout-minimal-right-column {
+        padding-left: 2px;
+    }
+}
+
+@media (max-width: 600px) {
+    .workout-minimal-container {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .workout-minimal-account-logo-container {
+        width: 48px;
+        height: 48px;
+    }
+
+    .workout-minimal-note {
+        font-size: 17px;
+    }
+
+    .workout-minimal-right-column {
+        padding-left: 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .workout-minimal-container {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .workout-minimal-account-logo-container {
+        width: 44px;
+        height: 44px;
+        margin-top: 6px;
+    }
+
+    .workout-minimal-username {
+        font-size: 15px;
+    }
+
+    .workout-minimal-note {
+        font-size: 16px;
+    }
+
+    .workout-minimal-exercises {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,29 @@
+.home-page {
+    background: linear-gradient(180deg, #121212, #383838);
+    min-width: 440px;
+    border: solid 1px red;
+    color: white;
+}
+
+.home-page-content {
+    position: relative;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin: 3% 14%;
+    gap: 14px;
+    border-radius: 14px;
+    padding: 1px 0px 1px 0px;
+    border: solid 1px red;
+}
+
+.home-page-header {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 28px;
+    min-height: 60px;
+    align-self: center;
+
+}

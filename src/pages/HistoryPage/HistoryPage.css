@@ -1,0 +1,229 @@
+.history-page {
+    background: linear-gradient(180deg, #121212, #383838);
+    min-width: 440px;
+    border: solid 1px red;
+    color: white;
+}
+
+.history-page-content {
+    position: relative;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin: 3% 14%;
+    gap: 14px;
+    border-radius: 14px;
+    padding: 1px 0px 1px 0px;
+    border: solid 1px red;
+}
+
+/* Page Header */
+.history-page-header {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 28px;
+    min-height: 60px;
+    align-self: center;
+}
+
+/* Workouts List Container */
+.history-workouts-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 13% 0 13%;
+    gap: 26px;
+}
+
+/* Loading State */
+.history-list-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 60px 40px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.history-list-loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.history-list-loading p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Error State */
+.history-list-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+}
+
+.history-list-error p {
+    color: #fca5a5;
+    margin: 0 0 16px 0;
+    font-size: 16px;
+}
+
+.retry-button {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.retry-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.retry-button:active {
+    transform: scale(0.98);
+}
+
+/* Empty State */
+.history-list-empty {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.history-list-empty p {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.history-list-empty small {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .history-page-content {
+        margin: 3% 10%;
+        padding: 32px 0;
+    }
+
+    .history-page-header {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .history-page-content {
+        margin: 3% 8%;
+        padding: 28px 0;
+        gap: 20px;
+    }
+
+    .history-page-header {
+        font-size: 26px;
+    }
+
+    .history-workouts-list {
+        gap: 14px;
+    }
+
+    .history-list-loading {
+        padding: 50px 30px;
+    }
+
+    .history-list-empty {
+        padding: 50px 30px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .history-page-content {
+        margin: 3% 5%;
+        padding: 24px 0;
+        gap: 16px;
+    }
+
+    .history-page-header {
+        font-size: 24px;
+        margin-bottom: 4px;
+    }
+
+    .history-workouts-list {
+        gap: 12px;
+        padding: 0;
+    }
+
+    .history-list-loading {
+        padding: 40px 20px;
+    }
+
+    .history-list-loading p {
+        font-size: 15px;
+    }
+
+    .history-list-empty {
+        padding: 40px 24px;
+    }
+
+    .history-list-empty p {
+        font-size: 16px;
+    }
+
+    .history-list-empty small {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .history-page-content {
+        margin: 5% 12%;
+        padding: 20px 0;
+    }
+
+    .history-page-header {
+        font-size: 22px;
+    }
+
+    .history-workouts-list {
+        gap: 10px;
+    }
+
+    .history-list-loading-spinner {
+        width: 36px;
+        height: 36px;
+    }
+
+    .history-list-loading p {
+        font-size: 14px;
+    }
+
+    .retry-button {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
