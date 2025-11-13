@@ -12,13 +12,14 @@ interface Exercise {
 interface AddExercisesProps {
     onAddExercise: (exercise: Exercise) => void;
     onClose: () => void;
-    alreadyAddedExerciseIds: string[]; // NEW: List of already added exercise IDs
+    alreadyAddedExerciseIds: string[];
 }
 
 export function AddExercises({ onAddExercise, onClose, alreadyAddedExerciseIds }: AddExercisesProps) {
     const [exercises, setExercises] = useState<Exercise[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         fetchExercises();
@@ -59,10 +60,12 @@ export function AddExercises({ onAddExercise, onClose, alreadyAddedExerciseIds }
         onAddExercise(exercise);
     };
 
-    // Filter out already added exercises
-    const availableExercises = exercises.filter(
-        exercise => !alreadyAddedExerciseIds.includes(exercise.id)
-    );
+    // Filter exercises by search query and already added exercises
+    const filteredExercises = exercises
+        .filter(exercise => !alreadyAddedExerciseIds.includes(exercise.id))
+        .filter(exercise =>
+            exercise.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
 
     return (
         <div className='add-exercise-container'>
@@ -70,6 +73,18 @@ export function AddExercises({ onAddExercise, onClose, alreadyAddedExerciseIds }
                 <RiCloseFill className="close-icon" />
             </button>
             <div className='add-exercise-container-header'>Add an exercise</div>
+
+            {/* Search Bar */}
+            <div className="search-bar-container">
+                <input
+                    type="text"
+                    className="exercise-search-input"
+                    placeholder="Search exercises..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    autoFocus
+                />
+            </div>
 
             {loading && (
                 <div className="exercises-loading">
@@ -87,25 +102,34 @@ export function AddExercises({ onAddExercise, onClose, alreadyAddedExerciseIds }
                 </div>
             )}
 
-            {!loading && !error && availableExercises.length === 0 && (
+            {!loading && !error && filteredExercises.length === 0 && searchQuery === '' && (
                 <div className="exercises-empty">
                     <p>All exercises have been added</p>
                     <small>You've added all available exercises to your workout</small>
                 </div>
             )}
 
-            {!loading && !error && availableExercises.map((exercise) => (
-                <div key={exercise.id} className='exercise-container'>
-                    <PiPulse className="exercise-icon" />
-                    <p className='exercise-name'>{exercise.name}</p>
-                    <button
-                        className='add-exercise-button'
-                        onClick={() => handleAddExercise(exercise)}
-                    >
-                        +
-                    </button>
+            {!loading && !error && filteredExercises.length === 0 && searchQuery !== '' && (
+                <div className="exercises-empty">
+                    <p>No exercises found</p>
+                    <small>Try a different search term</small>
                 </div>
-            ))}
+            )}
+
+            <div className="exercises-list">
+                {!loading && !error && filteredExercises.map((exercise) => (
+                    <div key={exercise.id} className='exercise-container'>
+                        <PiPulse className="exercise-icon" />
+                        <p className='exercise-name'>{exercise.name}</p>
+                        <button
+                            className='add-exercise-button'
+                            onClick={() => handleAddExercise(exercise)}
+                        >
+                            +
+                        </button>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

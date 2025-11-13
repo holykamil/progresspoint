@@ -40,6 +40,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
+    user-select: none;
 }
 
 .workout-title {
@@ -49,25 +50,51 @@
     color: #ffffff;
 }
 
+.current-workout-header .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.workout-timer {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-bottom: 10px;
+    gap: 6px;
+    user-select: none;
+}
+
+.timer-icon {
+    width: 34px;
+    height: 34px;
+}
+
+.timer-text {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 18px;
+    color: white;
+}
+
 .finish-workout-button {
-    padding: 14px 32px;
-    background-color: #4CAF50;
-    color: #ffffff;
+    background: transparent;
+    color: #FF4739;
     border: none;
     border-radius: 12px;
-    font-size: 16px;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 18px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
 }
 
 .finish-workout-button:hover:not(:disabled) {
-    background-color: #45a049;
-    transform: translateY(-2px);
+    color: #ff4133;
+    text-shadow: 0 0 30px #ff4133;
+    transform: translateY(-1px);
 }
 
 .finish-workout-button:disabled {
-    background-color: #2a2a2a;
     color: #666666;
     cursor: not-allowed;
 }
@@ -85,6 +112,13 @@
 }
 
 .empty-workout-subtitle {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 16px !important;
+    color: #666666 !important;
+}
+
+.workout-subtitle {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
     font-size: 16px !important;
     color: #666666 !important;
 }
@@ -104,6 +138,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    user-select: none;
 }
 
 .workout-exercise-header {
@@ -112,21 +147,14 @@
     gap: 16px;
 }
 
-.workout-exercise-icon {
-    width: 32px;
-    height: 32px;
-    color: #ffffff;
-    flex-shrink: 0;
-}
-
 .workout-exercise-name {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
     margin: 0;
     color: #ffffff;
 }
 
-/* Sets Container */
+/* Sets Container - FIXED ALIGNMENT */
 .sets-container {
     display: flex;
     flex-direction: column;
@@ -135,44 +163,57 @@
 
 .sets-header {
     display: grid;
-    grid-template-columns: 50px 1fr 1fr 60px;
+    grid-template-columns: 60px 120px 1fr 1fr 50px;
     gap: 12px;
     font-size: 14px;
-    color: #9e9e9e;
+    color: #ffffff85;
     font-weight: 600;
+    align-items: center;
 }
 
 .set-label,
+.previous-label,
 .weight-label,
 .reps-label {
     text-align: center;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
 }
 
-/* Set Row */
+/* Set Row - MATCHES HEADER EXACTLY */
 .set-row {
     display: grid;
-    grid-template-columns: 50px 1fr 1fr 50px;
+    grid-template-columns: 60px 120px 1fr 1fr 50px;
     gap: 12px;
     align-items: center;
 }
 
 .set-number {
     text-align: center;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
     font-size: 18px;
-    font-weight: 600;
     color: #ffffff;
+}
+
+.previous-set {
+    text-align: center;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .weight-input,
 .reps-input {
+    width: 100%;
     background-color: #1e1e1e;
     border: 2px solid #333333;
     border-radius: 10px;
-    padding: 12px;
+    padding: 12px 8px;
     color: #ffffff;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
     font-size: 16px;
     text-align: center;
     transition: border-color 0.2s;
+    box-sizing: border-box;
 }
 
 .weight-input:focus,
@@ -230,12 +271,13 @@
 
 /* Add Exercise Main Button */
 .add-exercise-main-button {
-    width: 100%;
-    padding: 18px;
-    background-color: #ff5757;
+    width: 215px;
+    padding: 10px 6px;
+    background-color: #FF4739;
     color: #ffffff;
     border: none;
     border-radius: 12px;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
@@ -243,17 +285,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    align-self: center;
     gap: 12px;
 }
 
 .add-exercise-main-button:hover {
     background-color: #ff6b6b;
     transform: translateY(-2px);
-}
-
-.add-icon {
-    width: 24px;
-    height: 24px;
 }
 
 /* Popup Overlay */
@@ -274,7 +312,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-
     min-width: 600px;
     max-width: 95vw;
     max-height: 85vh;
@@ -304,7 +341,6 @@
     }
 }
 
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .current-workout {
@@ -315,28 +351,14 @@
         font-size: 30px;
     }
 
-    .finish-workout-button {
-        padding: 12px 24px;
-        font-size: 15px;
-    }
-
-    .workout-exercise-name {
-        font-size: 20px;
-    }
-
-    .workout-exercise-icon {
-        width: 28px;
-        height: 28px;
-    }
-
     .sets-header {
-        grid-template-columns: 40px 1fr 1fr 40px;
+        grid-template-columns: 50px 100px 1fr 1fr 40px;
         gap: 10px;
         font-size: 13px;
     }
 
     .set-row {
-        grid-template-columns: 40px 1fr 1fr 40px;
+        grid-template-columns: 50px 100px 1fr 1fr 40px;
         gap: 10px;
     }
 
@@ -346,7 +368,7 @@
 
     .weight-input,
     .reps-input {
-        padding: 10px;
+        padding: 10px 6px;
         font-size: 15px;
     }
 
@@ -382,6 +404,15 @@
         text-align: center;
     }
 
+    .workout-subtitle {
+        text-align: center;
+    }
+
+    .workout-timer {
+        justify-content: center;
+        width: 100%;
+    }
+
     .finish-workout-button {
         width: 100%;
     }
@@ -392,17 +423,19 @@
     }
 
     .sets-header {
+        grid-template-columns: 40px 80px 1fr 1fr 35px;
+        gap: 8px;
         font-size: 12px;
-        padding: 0 8px;
     }
 
     .set-row {
+        grid-template-columns: 40px 80px 1fr 1fr 35px;
         gap: 8px;
     }
 
     .weight-input,
     .reps-input {
-        padding: 8px;
+        padding: 8px 4px;
         font-size: 14px;
     }
 
@@ -426,17 +459,28 @@
     }
 
     .sets-header {
-        grid-template-columns: 35px 1fr 1fr 35px;
+        grid-template-columns: 35px 70px 1fr 1fr 30px;
         gap: 6px;
+        font-size: 11px;
     }
 
     .set-row {
-        grid-template-columns: 35px 1fr 1fr 35px;
+        grid-template-columns: 35px 70px 1fr 1fr 30px;
         gap: 6px;
     }
 
     .set-number {
         font-size: 14px;
+    }
+
+    .previous-set {
+        font-size: 12px;
+    }
+
+    .weight-input,
+    .reps-input {
+        padding: 8px 4px;
+        font-size: 13px;
     }
 
     .remove-set-button {

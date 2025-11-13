@@ -65,7 +65,7 @@
 
 .submit-workout-input:focus {
     outline: none;
-    border-color: #ff5757;
+    border-color: #FF4739;
 }
 
 .submit-workout-input::placeholder {
@@ -119,8 +119,8 @@
 
 .submit-workout-cancel-button {
     background-color: transparent;
-    color: #ff5757;
-    border: 2px solid #ff5757;
+    color: #FF4739;
+    border: 2px solid #FF4739;
 }
 
 .submit-workout-cancel-button:hover:not(:disabled) {

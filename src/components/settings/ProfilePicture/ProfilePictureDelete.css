@@ -1,0 +1,172 @@
+/* Overlay */
+.profile-picture-delete-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1100;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Container */
+.profile-picture-delete-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1101;
+    min-width: 450px;
+    max-width: 90vw;
+    background-color: #1e1e1e;
+    border: 1px solid #333333;
+    border-radius: 16px;
+    padding: 36px;
+    box-sizing: border-box;
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Title */
+.profile-picture-delete-title {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 24px 0;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Error Message */
+.profile-picture-delete-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #fca5a5;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Actions */
+.profile-picture-delete-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.profile-picture-delete-cancel-button,
+.profile-picture-delete-confirm-button {
+    width: 100%;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.profile-picture-delete-cancel-button {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.profile-picture-delete-cancel-button:hover:not(:disabled) {
+    background-color: #3d3d3d;
+    transform: translateY(-1px);
+}
+
+.profile-picture-delete-cancel-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.profile-picture-delete-confirm-button {
+    background-color: #ff5757;
+    color: #ffffff;
+}
+
+.profile-picture-delete-confirm-button:hover:not(:disabled) {
+    background-color: #ff6b6b;
+    transform: translateY(-1px);
+}
+
+.profile-picture-delete-confirm-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -45%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-picture-delete-container {
+        min-width: 380px;
+        padding: 32px;
+    }
+
+    .profile-picture-delete-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-picture-delete-container {
+        min-width: 90vw;
+        padding: 28px 24px;
+    }
+
+    .profile-picture-delete-title {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .profile-picture-delete-cancel-button,
+    .profile-picture-delete-confirm-button {
+        font-size: 15px;
+        padding: 13px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-picture-delete-container {
+        padding: 24px 20px;
+    }
+
+    .profile-picture-delete-title {
+        font-size: 17px;
+    }
+
+    .profile-picture-delete-cancel-button,
+    .profile-picture-delete-confirm-button {
+        font-size: 14px;
+        padding: 12px 18px;
+    }
+}

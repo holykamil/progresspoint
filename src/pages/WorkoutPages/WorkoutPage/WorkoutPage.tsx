@@ -4,11 +4,10 @@ import { SubmitWorkout } from "@/components/workout/SubmitWorkout/SubmitWorkout"
 import { ExitWarningPopup } from "@/components/workout/ExitWarningPopup/ExitWarningPopup"
 import { useState, useEffect, useRef } from "react"
 import { useNavigate, useBlocker, useLocation } from "react-router-dom"
-import { IoMdAdd } from "react-icons/io"
+import { MdOutlineTimer } from "react-icons/md";
 import './WorkoutPage.css'
 import type { Workout } from "@/types/workout"
 
-// ...existing code...
 interface Exercise {
     id: string;
     name: string;
@@ -16,7 +15,7 @@ interface Exercise {
 
 interface WorkoutExercise extends Exercise {
     sets: Set[];
-    previousSets?: Array<{ weight: number; reps: number }>; // Historical data from repeated workout
+    previousSets?: Array<{ weight: number; reps: number }>;
 }
 
 interface Set {
@@ -45,15 +44,24 @@ export function WorkoutPage() {
         if (repeatWorkout && repeatWorkout.workoutExercises) {
             const initialExercises: WorkoutExercise[] = repeatWorkout.workoutExercises
                 .sort((a, b) => a.order - b.order)
-                .map(workoutExercise => ({
-                    id: workoutExercise.exerciseId,
-                    name: workoutExercise.exercise.name,
-                    sets: [],
-                    previousSets: workoutExercise.sets.map(set => ({
-                        weight: set.weight,
-                        reps: set.repetitions
-                    }))
-                }));
+                .map(workoutExercise => {
+                    // Create first empty set
+                    const firstSet: Set = {
+                        id: `${workoutExercise.exerciseId}-set-${Date.now()}-0`,
+                        weight: '',
+                        reps: ''
+                    };
+
+                    return {
+                        id: workoutExercise.exerciseId,
+                        name: workoutExercise.exercise.name,
+                        sets: [firstSet], // Auto-add first set
+                        previousSets: workoutExercise.sets.map(set => ({
+                            weight: set.weight,
+                            reps: set.repetitions
+                        }))
+                    };
+                });
             setWorkoutExercises(initialExercises);
         }
     }, [repeatWorkout]);
@@ -101,9 +109,16 @@ export function WorkoutPage() {
     };
 
     const handleAddExercise = (exercise: Exercise) => {
+        // Create first empty set automatically
+        const firstSet: Set = {
+            id: `${exercise.id}-set-${Date.now()}-0`,
+            weight: '',
+            reps: ''
+        };
+
         const newWorkoutExercise: WorkoutExercise = {
             ...exercise,
-            sets: []
+            sets: [firstSet] // Auto-add first set
         };
         setWorkoutExercises([...workoutExercises, newWorkoutExercise]);
         setIsAddExerciseOpen(false);
@@ -199,14 +214,6 @@ export function WorkoutPage() {
             return `${prevSet.weight}x${prevSet.reps}`;
         }
 
-        // Otherwise show previous set in current workout
-        if (currentSetIndex > 0 && exercise.sets[currentSetIndex - 1]) {
-            const previousSet = exercise.sets[currentSetIndex - 1];
-            if (previousSet.weight && previousSet.reps) {
-                return `${previousSet.weight}x${previousSet.reps}`;
-            }
-        }
-
         return '-';
     };
 
@@ -225,7 +232,7 @@ export function WorkoutPage() {
                         </div>
                         <div className="header-right">
                             <div className="workout-timer">
-                                <span className="timer-icon">⏱</span>
+                                <MdOutlineTimer className="timer-icon" />
                                 <span className="timer-text">{formatTime(elapsedSeconds)}</span>
                             </div>
                             <button
@@ -255,8 +262,9 @@ export function WorkoutPage() {
                                         <div className="sets-container">
                                             <div className="sets-header">
                                                 <span className="set-label">SET</span>
-                                                <span className="previous-label">PREVIOUS</span>
-                                                <span className="weight-label">KG X REPS</span>
+                                                <span className="previous-label">PREVIOUSLY</span>
+                                                <span className="weight-label">KG</span>
+                                                <span className="reps-label">REPS</span>
                                                 <span className="actions-label"></span>
                                             </div>
                                             {exercise.sets.map((set, index) => (
@@ -265,23 +273,20 @@ export function WorkoutPage() {
                                                     <span className="previous-set">
                                                         {getPreviousSetInfo(exercise.id, index)}
                                                     </span>
-                                                    <div className="weight-reps-inputs">
-                                                        <input
-                                                            type="number"
-                                                            className="weight-input"
-                                                            placeholder="0"
-                                                            value={set.weight}
-                                                            onChange={(e) => handleSetChange(exercise.id, set.id, 'weight', e.target.value)}
-                                                        />
-                                                        <span className="input-separator">x</span>
-                                                        <input
-                                                            type="number"
-                                                            className="reps-input"
-                                                            placeholder="0"
-                                                            value={set.reps}
-                                                            onChange={(e) => handleSetChange(exercise.id, set.id, 'reps', e.target.value)}
-                                                        />
-                                                    </div>
+                                                    <input
+                                                        type="number"
+                                                        className="weight-input"
+                                                        placeholder="0"
+                                                        value={set.weight}
+                                                        onChange={(e) => handleSetChange(exercise.id, set.id, 'weight', e.target.value)}
+                                                    />
+                                                    <input
+                                                        type="number"
+                                                        className="reps-input"
+                                                        placeholder="0"
+                                                        value={set.reps}
+                                                        onChange={(e) => handleSetChange(exercise.id, set.id, 'reps', e.target.value)}
+                                                    />
                                                     <button
                                                         className="remove-set-button"
                                                         onClick={() => handleRemoveSet(exercise.id, set.id)}
@@ -308,8 +313,7 @@ export function WorkoutPage() {
                         className="add-exercise-main-button"
                         onClick={() => setIsAddExerciseOpen(true)}
                     >
-                        <IoMdAdd className="add-icon" />
-                        Add an exercise
+                        + Add an exercise
                     </button>
                 </div>
             </div>

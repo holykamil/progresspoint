@@ -12,6 +12,7 @@ import { AuthProvider } from '@/authentication/AuthContext'
 import { ProtectedRoute } from '@/authentication/ProtectedRoute';
 import { StartingPage } from '@/pages/StartingPage/StartingPage'
 import { RepeatWorkoutPage } from '@/pages/WorkoutPages/RepeatWorkoutPage/RepeatWorkoutPage'
+import { TestPage } from '@/pages/TestPage'
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <WorkoutPage />
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: "/test",
+    element: (
+      <ProtectedRoute>
+        <TestPage />
       </ProtectedRoute>
     )
   },

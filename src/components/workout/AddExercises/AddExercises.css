@@ -8,6 +8,8 @@
     border-radius: 16px;
     overflow-y: auto;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Close Button */
@@ -42,7 +44,7 @@
     font-size: 32px;
     font-weight: 800;
     color: #ffffff;
-    padding: 28px 32px;
+    padding: 28px 32px 20px 32px;
     padding-right: 60px;
     border-bottom: 1px solid #2a2a2a;
     text-align: center;
@@ -50,6 +52,46 @@
     top: 0;
     background-color: #1e1e1e;
     z-index: 5;
+    flex-shrink: 0;
+}
+
+/* Search Bar Container */
+.search-bar-container {
+    padding: 20px 32px;
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #2a2a2a;
+    position: sticky;
+    top: 81px;
+    z-index: 4;
+    flex-shrink: 0;
+}
+
+.exercise-search-input {
+    width: 100%;
+    background-color: #252525;
+    border: 2px solid #333333;
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: #ffffff;
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 16px;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.exercise-search-input:focus {
+    outline: none;
+    border-color: #ff5757;
+}
+
+.exercise-search-input::placeholder {
+    color: #666666;
+}
+
+/* Exercises List Container */
+.exercises-list {
+    flex: 1;
+    overflow-y: auto;
 }
 
 /* Exercise Container */
@@ -192,24 +234,34 @@
 .exercises-empty p {
     font-family: 'RobotoMonoSemiBold', sans-serif;
     font-size: 16px;
-    margin: 0;
+    margin: 0 0 8px 0;
+}
+
+.exercises-empty small {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.3);
 }
 
 /* Scrollbar Styling */
-.add-exercise-container::-webkit-scrollbar {
+.add-exercise-container::-webkit-scrollbar,
+.exercises-list::-webkit-scrollbar {
     width: 8px;
 }
 
-.add-exercise-container::-webkit-scrollbar-track {
+.add-exercise-container::-webkit-scrollbar-track,
+.exercises-list::-webkit-scrollbar-track {
     background: #1e1e1e;
 }
 
-.add-exercise-container::-webkit-scrollbar-thumb {
+.add-exercise-container::-webkit-scrollbar-thumb,
+.exercises-list::-webkit-scrollbar-thumb {
     background: #3d3d3d;
     border-radius: 4px;
 }
 
-.add-exercise-container::-webkit-scrollbar-thumb:hover {
+.add-exercise-container::-webkit-scrollbar-thumb:hover,
+.exercises-list::-webkit-scrollbar-thumb:hover {
     background: #4d4d4d;
 }
 
@@ -222,8 +274,18 @@
 
     .add-exercise-container-header {
         font-size: 26px;
-        padding: 24px 28px;
+        padding: 24px 28px 18px 28px;
         padding-right: 56px;
+    }
+
+    .search-bar-container {
+        padding: 18px 28px;
+        top: 72px;
+    }
+
+    .exercise-search-input {
+        padding: 12px 16px;
+        font-size: 15px;
     }
 
     .exercise-container {
@@ -260,8 +322,18 @@
 
     .add-exercise-container-header {
         font-size: 22px;
-        padding: 20px 24px;
+        padding: 20px 24px 16px 24px;
         padding-right: 52px;
+    }
+
+    .search-bar-container {
+        padding: 16px 24px;
+        top: 64px;
+    }
+
+    .exercise-search-input {
+        padding: 12px 14px;
+        font-size: 14px;
     }
 
     .exercise-container {
@@ -300,8 +372,18 @@
 
     .add-exercise-container-header {
         font-size: 20px;
-        padding: 18px 20px;
+        padding: 18px 20px 14px 20px;
         padding-right: 50px;
+    }
+
+    .search-bar-container {
+        padding: 14px 20px;
+        top: 58px;
+    }
+
+    .exercise-search-input {
+        padding: 10px 12px;
+        font-size: 13px;
     }
 
     .exercise-container {
@@ -328,8 +410,12 @@
 @media (max-width: 400px) {
     .add-exercise-container-header {
         font-size: 18px;
-        padding: 16px 18px;
+        padding: 16px 18px 12px 18px;
         padding-right: 48px;
+    }
+
+    .search-bar-container {
+        padding: 12px 18px;
     }
 
     .exercise-container {
