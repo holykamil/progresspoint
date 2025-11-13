@@ -33,7 +33,7 @@ export function WorkoutPage() {
     const [isAddExerciseOpen, setIsAddExerciseOpen] = useState(false);
     const [isSubmitWorkoutOpen, setIsSubmitWorkoutOpen] = useState(false);
     const [isExitWarningOpen, setIsExitWarningOpen] = useState(false);
-    const [elapsedSeconds, setElapsedSeconds] = useState(0);
+    const [elapsedSeconds, setElapsedSeconds] = useState(60);
     const [isTimerRunning, setIsTimerRunning] = useState(true);
     const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
     const [pendingNavigation, setPendingNavigation] = useState<string | null>(null);
