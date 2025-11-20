@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetchWithAuth } from '@/lib/api';
+import { deleteProfilePicture } from '@/lib/userApi';
 import './ProfilePictureDelete.css';
 
 interface ProfilePictureDeleteProps {
@@ -16,15 +16,7 @@ export function ProfilePictureDelete({ onClose, onSuccess }: ProfilePictureDelet
         setError(null);
 
         try {
-            const response = await fetchWithAuth('/api/user/picture', {
-                method: 'DELETE'
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Failed to delete profile picture');
-            }
-
+            await deleteProfilePicture();
             onSuccess();
         } catch (err) {
             console.error('Error deleting profile picture:', err);

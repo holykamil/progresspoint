@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetchWithAuth } from '@/lib/api';
+import { changeUsername } from '@/lib/userApi';
 import './ChangeUsername.css';
 
 interface ChangeUsernameProps {
@@ -45,27 +45,11 @@ export function ChangeUsername({ currentUsername, onClose, onSuccess }: ChangeUs
         setError(null);
 
         try {
-            const response = await fetchWithAuth('/api/user/username', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ newUsername: newUsername.trim() })
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                setError(data.message || 'Failed to change username');
-                setIsSubmitting(false);
-                return;
-            }
-
-            // Success
+            await changeUsername(newUsername.trim());
             onSuccess(newUsername.trim());
         } catch (err) {
             console.error('Error changing username:', err);
-            setError('Network error. Please try again.');
+            setError(err instanceof Error ? err.message : 'Failed to change username');
             setIsSubmitting(false);
         }
     }

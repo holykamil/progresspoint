@@ -1,31 +1,14 @@
 import { useState, useEffect } from 'react';
 import { fetchWithAuth } from '@/lib/api';
+import type { SubmitWorkoutExercise } from '@/types/workout';
+import type { UserData } from '@/types/user';
 import './SubmitWorkout.css';
 
-interface WorkoutExercise {
-    id: string;
-    name: string;
-    sets: {
-        id: string;
-        weight: string;
-        reps: string;
-    }[];
-}
-
 interface SubmitWorkoutProps {
-    workoutExercises: WorkoutExercise[];
+    workoutExercises: SubmitWorkoutExercise[];
     durationMinutes: number;
     onClose: () => void;
     onSubmit: () => void;
-}
-
-interface UserData {
-    user: {
-        id: string;
-        email: string;
-        username: string;
-        createdAt: string;
-    };
 }
 
 export function SubmitWorkout({ workoutExercises, durationMinutes, onClose, onSubmit }: SubmitWorkoutProps) {

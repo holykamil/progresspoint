@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetchWithAuth } from '@/lib/api';
+import { changePassword } from '@/lib/userApi';
 import './ChangePassword.css';
 
 interface ChangePasswordProps {
@@ -49,30 +49,11 @@ export function ChangePassword({ onClose, onSuccess }: ChangePasswordProps) {
         setError(null);
 
         try {
-            const response = await fetchWithAuth('/api/user/password', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    oldPassword: oldPassword,
-                    newPassword: newPassword
-                })
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                setError(data.message || 'Failed to change password');
-                setIsSubmitting(false);
-                return;
-            }
-
-            // Success
+            await changePassword(oldPassword, newPassword);
             onSuccess();
         } catch (err) {
             console.error('Error changing password:', err);
-            setError('Network error. Please try again.');
+            setError(err instanceof Error ? err.message : 'Failed to change password');
             setIsSubmitting(false);
         }
     }

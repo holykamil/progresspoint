@@ -5,24 +5,9 @@ import { ExitWarningPopup } from "@/components/workout/ExitWarningPopup/ExitWarn
 import { useState, useEffect, useRef } from "react"
 import { useNavigate, useBlocker, useLocation } from "react-router-dom"
 import { MdOutlineTimer } from "react-icons/md";
-import './WorkoutPage.css'
 import type { Workout } from "@/types/workout"
-
-interface Exercise {
-    id: string;
-    name: string;
-}
-
-interface WorkoutExercise extends Exercise {
-    sets: Set[];
-    previousSets?: Array<{ weight: number; reps: number }>;
-}
-
-interface Set {
-    id: string;
-    weight: string;
-    reps: string;
-}
+import type { Exercise, WorkoutExercise, WorkoutSet } from "@/types/exercise";
+import './WorkoutPage.css'
 
 export function WorkoutPage() {
     const navigate = useNavigate();
@@ -46,7 +31,7 @@ export function WorkoutPage() {
                 .sort((a, b) => a.order - b.order)
                 .map(workoutExercise => {
                     // Create first empty set
-                    const firstSet: Set = {
+                    const firstSet: WorkoutSet = {
                         id: `${workoutExercise.exerciseId}-set-${Date.now()}-0`,
                         weight: '',
                         reps: ''
@@ -110,7 +95,7 @@ export function WorkoutPage() {
 
     const handleAddExercise = (exercise: Exercise) => {
         // Create first empty set automatically
-        const firstSet: Set = {
+        const firstSet: WorkoutSet = {
             id: `${exercise.id}-set-${Date.now()}-0`,
             weight: '',
             reps: ''
@@ -127,7 +112,7 @@ export function WorkoutPage() {
     const handleAddSet = (exerciseId: string) => {
         setWorkoutExercises(workoutExercises.map(exercise => {
             if (exercise.id === exerciseId) {
-                const newSet: Set = {
+                const newSet: WorkoutSet = {
                     id: `${exerciseId}-set-${Date.now()}-${exercise.sets.length}`,
                     weight: '',
                     reps: ''

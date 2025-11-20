@@ -1,0 +1,171 @@
+/* Stats Card Styles */
+.stats-card {
+    background: rgba(40, 40, 40, 0.8);
+    border-radius: 16px;
+    padding: 18px 18px 18px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 262px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 0.3s ease;
+    margin-bottom: 25px;
+    overflow: hidden;
+    position: relative;
+
+    /* Animation properties */
+    opacity: 0;
+    animation: slideInFromLeft 0.6s ease forwards;
+    user-select: none;
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Clickable variant */
+.stats-card-clickable {
+    cursor: pointer;
+}
+
+.stats-card-clickable:hover {
+    background: rgba(50, 50, 50, 0.9);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.stats-card-clickable:active {
+    transform: translateY(0);
+}
+
+/* Non-clickable variant still has subtle hover */
+.stats-card:not(.stats-card-clickable):hover {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Label */
+.stats-card-label {
+    font-family: 'RobotoSemiBold', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+
+/* Value */
+.stats-card-value {
+    font-family: 'Roboto', sans-serif;
+    font-size: 46px;
+    font-weight: 800;
+    color: #FF4739;
+    margin: 0;
+    line-height: 1;
+    position: relative;
+    overflow: visible;
+    white-space: nowrap;
+    max-width: 100%;
+    display: inline-block;
+
+    /* Gradient fade on the right edge */
+    mask-image: linear-gradient(to right, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+}
+
+/* Scrolling animation on hover - only for overflowing cards */
+.stats-card-overflow:hover .stats-card-value {
+    animation: scrollText 3s ease-in-out infinite;
+    mask-image: none;
+    -webkit-mask-image: none;
+}
+
+@keyframes scrollText {
+
+    0%,
+    20% {
+        transform: translateX(0);
+    }
+
+    45%,
+    55% {
+        transform: translateX(calc(-100% + 160px));
+    }
+
+    80%,
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.stats-card-suffix {
+    font-family: 'RobotoMonoSemiBold', sans-serif;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .stats-card {
+        padding: 20px 24px;
+        gap: 10px;
+    }
+
+    .stats-card-label {
+        font-size: 18px;
+    }
+
+    .stats-card-value {
+        font-size: 36px;
+    }
+
+    .stats-card-suffix {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .stats-card {
+        padding: 18px 20px;
+        gap: 8px;
+    }
+
+    .stats-card-label {
+        font-size: 16px;
+    }
+
+    .stats-card-value {
+        font-size: 32px;
+    }
+
+    .stats-card-suffix {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-card {
+        padding: 16px 18px;
+    }
+
+    .stats-card-label {
+        font-size: 14px;
+    }
+
+    .stats-card-value {
+        font-size: 28px;
+    }
+
+    .stats-card-suffix {
+        font-size: 12px;
+    }
+}

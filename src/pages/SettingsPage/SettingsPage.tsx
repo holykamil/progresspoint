@@ -2,25 +2,17 @@ import { Header } from '@/components/Header/Header';
 import { NavLink } from "react-router-dom";
 import { RiCloseFill } from "react-icons/ri";
 import { useEffect, useState } from "react";
-import { fetchWithAuth } from '../../lib/api';
+import { fetchUserData, fetchProfilePicture } from '@/lib/userApi';
 import { ChangeUsername } from '@/components/settings/ChangeUsername/ChangeUsername';
 import { ChangePassword } from '@/components/settings/ChangePassword/ChangePassword';
 import { ProfilePictureUpload } from '@/components/settings/ProfilePicture/ProfilePictureUpload';
 import { ProfilePictureDelete } from '@/components/settings/ProfilePicture/ProfilePictureDelete';
+import type { SettingsUserData } from '@/types/user';
 import DefaultUserImage from '../../assets/images/account-logo.png';
 import './Settings.css';
 
-interface UserData {
-    user: {
-        id: string;
-        email: string;
-        username: string;
-        createdAt: string;
-    };
-}
-
 export function SettingsPage() {
-    const [userData, setUserData] = useState<UserData | null>(null);
+    const [userData, setUserData] = useState<SettingsUserData | null>(null);
     const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
     const [isUsernamePopupOpen, setIsUsernamePopupOpen] = useState(false);
     const [isPasswordPopupOpen, setIsPasswordPopupOpen] = useState(false);
@@ -29,8 +21,8 @@ export function SettingsPage() {
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
     useEffect(() => {
-        fetchUserData();
-        fetchProfilePicture();
+        loadUserData();
+        loadProfilePicture();
     }, []);
 
     // Clear success message after 5 seconds
@@ -43,36 +35,17 @@ export function SettingsPage() {
         }
     }, [successMessage]);
 
-    async function fetchUserData() {
-        try {
-            const response = await fetchWithAuth('/api/me');
-
-            if (!response.ok) {
-                throw new Error('Failed to fetch user data');
-            }
-
-            const data: UserData = await response.json();
-            setUserData(data);
-        } catch (err) {
-            console.error('Error fetching user data:', err);
+    async function loadUserData() {
+        const data = await fetchUserData();
+        if (data) {
+            // Extract only the user data needed for settings page
+            setUserData({ user: data.user });
         }
     }
 
-    async function fetchProfilePicture() {
-        try {
-            const response = await fetchWithAuth('/api/user/picture');
-
-            if (response.ok) {
-                const data = await response.json();
-                setProfileImageUrl(data.profileImageUrl);
-            } else {
-                // No profile picture set, use default
-                setProfileImageUrl(null);
-            }
-        } catch (err) {
-            console.error('Error fetching profile picture:', err);
-            setProfileImageUrl(null);
-        }
+    async function loadProfilePicture() {
+        const imageUrl = await fetchProfilePicture();
+        setProfileImageUrl(imageUrl);
     }
 
     function handleUsernameSuccess(newUsername: string) {

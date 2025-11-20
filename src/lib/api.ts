@@ -4,11 +4,18 @@ export async function fetchWithAuth(url: string, options: RequestInit = {}) {
     // Clean token to remove any whitespace or newlines
     const cleanToken = token?.trim();
 
-    const headers = {
-        'Content-Type': 'application/json',
+    const headers = new Headers({
+        ...(!(options.body instanceof FormData) && { 'Content-Type': 'application/json' }),
         ...(cleanToken && { 'Authorization': `Bearer ${cleanToken}` }),
-        ...options.headers,
-    };
+    });
+
+    // Merge existing headers if present
+    if (options.headers) {
+        const existingHeaders = new Headers(options.headers);
+        existingHeaders.forEach((value, key) => {
+            headers.set(key, value);
+        });
+    }
 
     const response = await fetch(url, {
         ...options,
@@ -24,6 +31,3 @@ export async function fetchWithAuth(url: string, options: RequestInit = {}) {
 
     return response;
 }
-
-
-

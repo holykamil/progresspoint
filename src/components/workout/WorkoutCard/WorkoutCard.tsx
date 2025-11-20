@@ -1,16 +1,23 @@
-import type { Workout } from '@/types/workout';
+import type { HistoryWorkoutCardProps } from '@/types/workout';
 import AccountLogo from '@/assets/images/account-image.png';
 import { formatDate } from '@/lib/date';
+import { fetchProfilePicture } from '@/lib/userApi';
 import './WorkoutCard.css';
+import { useEffect, useState } from 'react';
 
-interface WorkoutCardProps {
-    workout: Workout;
-    index: number;
-    onClick: (workoutId: string) => void;
-}
 
-export function WorkoutCard({ workout, index, onClick }: WorkoutCardProps) {
 
+export function WorkoutCard({ workout, index, onClick }: HistoryWorkoutCardProps) {
+    const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
+
+    useEffect(() => {
+        loadProfilePicture();
+    }, []);
+
+    async function loadProfilePicture() {
+        const imageUrl = await fetchProfilePicture();
+        setProfileImageUrl(imageUrl);
+    }
 
     // Get comma-separated exercise names
     const getExerciseNames = (): string => {
@@ -38,7 +45,7 @@ export function WorkoutCard({ workout, index, onClick }: WorkoutCardProps) {
 
             <div className="workout-minimal-left-column">
                 <div className="workout-minimal-account-logo-container">
-                    <img src={AccountLogo} alt="Account Logo" />
+                    <img src={profileImageUrl || AccountLogo} alt="Account Logo" />
                 </div>
             </div>
             {/* Left Column - Main Content */}
@@ -64,14 +71,6 @@ export function WorkoutCard({ workout, index, onClick }: WorkoutCardProps) {
                     <p className="workout-minimal-sets">{totalSets} sets</p>
                 </div>
             </div>
-
-            {/* Right Column - Account Logo */}
-
         </div>
-
-
-
-    </>
-
-    );
+    </>);
 }

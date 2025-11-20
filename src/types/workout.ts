@@ -1,15 +1,12 @@
-// Workout type definitions
+import type { Exercise } from './exercise';
+
+// API response types (from backend)
 export interface WorkoutSet {
     id: string;
     workoutExerciseId: string;
     setNumber: number;
     repetitions: number;
     weight: number;
-}
-
-export interface Exercise {
-    id: string;
-    name: string
 }
 
 export interface WorkoutExercise {
@@ -50,8 +47,21 @@ export interface WorkoutsResponse {
     };
 }
 
+// Component prop types
 export interface HistoryWorkoutCardProps {
     workout: Workout;
     index: number;
     onClick: (workoutId: string) => void;
+    isSelected?: boolean;
+    isSelectMode?: boolean;
+}
+
+export interface SubmitWorkoutExercise {
+    id: string;
+    name: string;
+    sets: {
+        id: string;
+        weight: string;
+        reps: string;
+    }[];
 }

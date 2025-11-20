@@ -1,35 +1,33 @@
 import './UserPage.css'
 import { Header } from '../../components/Header/Header'
 import { NavLink } from 'react-router-dom'
+import { StatsCard } from '@/components/stats/StatsCard/StatsCard'
 
 import UserImage from '@/assets/images/account-image.png'
 import SettingsIcon from '@/assets/images/settings-icon.png'
 import type { UserData } from '@/types/user'
 import { useEffect, useState } from 'react'
-import { fetchWithAuth } from '@/lib/api'
+import { fetchUserData, fetchProfilePicture } from '@/lib/userApi'
 import { formatDate } from '@/lib/date';
 
 export function UserPage() {
+    const [userData, setUserData] = useState<UserData | null>(null);
+    const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
+
     useEffect(() => {
-        fetchUserData();
+        loadUserData();
+        loadProfilePicture();
     }, []);
 
-    const [userData, setUserData] = useState<UserData | null>(null);
-
-    async function fetchUserData() {
-        try {
-            const response = await fetchWithAuth('/api/me');
-
-            if (!response.ok) {
-                throw new Error('Failed to fetch user data');
-            }
-
-            const data: UserData = await response.json();
+    async function loadUserData() {
+        const data = await fetchUserData();
+        if (data) {
             setUserData(data);
-        } catch (err) {
-            console.error('Error fetching user data:', err);
-            // Don't set error here, let workouts error handling show
         }
+    }
+    async function loadProfilePicture() {
+        const imageUrl = await fetchProfilePicture();
+        setProfileImageUrl(imageUrl);
     }
 
     return (
@@ -39,7 +37,7 @@ export function UserPage() {
                 <div className='user-dashboard'>
                     <div className="user-dashboard-first-row">
                         <div className='user-image-container'>
-                            <img src={UserImage} alt="User profile" />
+                            <img src={profileImageUrl || UserImage} alt="User profile" />
                         </div>
                         <div className="user-general-info-container">
                             <p className="user-nickname">{userData?.user.username}</p>
@@ -64,6 +62,81 @@ export function UserPage() {
                         </div>
                     </div>
                 </div>
+
+
+                <div className='user-page-stats'>
+                    {userData && (
+                        <>
+                            <h2 className="user-page-section-title">Stats</h2>
+                            <div className="user-page-stats-grid">
+                                <StatsCard
+                                    label="Streak"
+                                    value={userData.currentStreak}
+                                    suffix=" days"
+                                    index={0}
+                                    clickable={false}
+                                />
+                                <StatsCard
+                                    label="Total workouts"
+                                    value={userData.totalWorkouts}
+                                    suffix=" workouts"
+                                    index={1}
+                                    clickable={false}
+                                />
+                                <StatsCard
+                                    label="Favorite exercise"
+                                    value={userData.favoriteExercise?.name || 'N/A'}
+                                    index={8}
+                                    clickable={false}
+                                />
+                                <StatsCard
+                                    label="Unique exercises"
+                                    value={userData.totalExercisesUsed}
+                                    suffix=" exercises"
+                                    index={2}
+                                    clickable={false}
+                                />
+                                <StatsCard
+                                    label="Total sets"
+                                    value={userData.totalSets}
+                                    suffix=" sets"
+                                    index={3}
+                                    clickable={false}
+                                />
+                                <StatsCard
+                                    label="Heaviest lift"
+                                    value={userData.heaviestWeight}
+                                    suffix=" kg"
+                                    index={6}
+                                    clickable={false}
+                                />
+                                <StatsCard
+                                    label="Total duration"
+                                    value={userData.totalDuration}
+                                    suffix=" minutes"
+                                    index={5}
+                                    clickable={false}
+                                />
+                                <StatsCard
+                                    label="Total reps"
+                                    value={userData.totalReps}
+                                    suffix=" reps"
+                                    index={4}
+                                    clickable={false}
+                                />
+                                <StatsCard
+                                    label="Volume"
+                                    value={userData.totalVolume}
+                                    suffix=" kg"
+                                    index={7}
+                                    clickable={false}
+                                />
+
+                            </div>
+                        </>
+                    )}
+                </div>
+
             </div>
         </main>
     )

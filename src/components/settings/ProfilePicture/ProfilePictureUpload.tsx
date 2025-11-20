@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { RiCloseFill } from 'react-icons/ri';
-import { fetchWithAuth } from '@/lib/api';
+import { uploadProfilePicture } from '@/lib/userApi';
 import './ProfilePictureUpload.css';
 
 interface ProfilePictureUploadProps {
@@ -57,23 +57,8 @@ export function ProfilePictureUpload({ onClose, onSuccess }: ProfilePictureUploa
         setError(null);
 
         try {
-            // Create FormData with the image file
-            const formData = new FormData();
-            formData.append('image', selectedFile);
-
-            const response = await fetchWithAuth('/api/user/picture', {
-                method: 'POST',
-                body: formData
-                // Don't set Content-Type header - browser will set it with boundary
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Failed to upload image');
-            }
-
-            const data = await response.json();
-            onSuccess(data.profileImageUrl);
+            const imageUrl = await uploadProfilePicture(selectedFile);
+            onSuccess(imageUrl);
         } catch (err) {
             console.error('Error uploading profile picture:', err);
             setError(err instanceof Error ? err.message : 'Failed to upload image');

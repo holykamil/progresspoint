@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { RiCloseFill } from "react-icons/ri";
 import type { Workout } from '@/types/workout';
 import UserImage from '@/assets/images/account-logo.png';
 import './WorkoutDetail.css';
+import { fetchProfilePicture } from '@/lib/userApi';
 
 interface WorkoutDetailProps {
     workout: Workout;
@@ -11,8 +12,16 @@ interface WorkoutDetailProps {
 }
 
 export function WorkoutDetail({ workout, isClosing, onClose }: WorkoutDetailProps) {
+    const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
 
+    useEffect(() => {
+        loadProfilePicture();
+    }, []);
 
+    async function loadProfilePicture() {
+        const imageUrl = await fetchProfilePicture();
+        setProfileImageUrl(imageUrl);
+    }
 
     // Format date to DD.MM.YYYY
     const formatDate = (isoDate: string): string => {
@@ -66,7 +75,7 @@ export function WorkoutDetail({ workout, isClosing, onClose }: WorkoutDetailProp
 
                     <div className="workout-detail-header">
                         <div className="workout-detail-user-image-container">
-                            <img src={UserImage} alt="User" />
+                            <img src={profileImageUrl || UserImage} alt="Account Logo" />
                         </div>
                         <div className="workout-detail-header-general-info">
                             <p className="workout-detail-username">{workout.user.username}</p>

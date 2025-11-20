@@ -1,13 +1,6 @@
-import type { Workout } from '@/types/workout';
+import type { HistoryWorkoutCardProps } from '@/types/workout';
+import { formatDate } from '@/lib/date';
 import './HistoryWorkoutCard.css';
-
-interface HistoryWorkoutCardProps {
-    workout: Workout;
-    index: number;
-    onClick: (workoutId: string) => void;
-    isSelected?: boolean; // NEW: For repeat workout page selection
-    isSelectMode?: boolean; // NEW: Changes behavior for selection vs detail view
-}
 
 export function HistoryWorkoutCard({
     workout,
@@ -16,15 +9,6 @@ export function HistoryWorkoutCard({
     isSelected = false,
     isSelectMode = false
 }: HistoryWorkoutCardProps) {
-    // Format date to DD.MM.YYYY
-    const formatDate = (isoDate: string): string => {
-        const date = new Date(isoDate);
-        const day = date.getDate().toString().padStart(2, '0');
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const year = date.getFullYear();
-        return `${day}.${month}.${year}`;
-    };
-
     // Get comma-separated exercise names
     const getExerciseNames = (): string => {
         return workout.workoutExercises

@@ -2,12 +2,8 @@ import { PiPulse } from "react-icons/pi";
 import { useState, useEffect } from 'react';
 import { RiCloseFill } from "react-icons/ri";
 import { fetchWithAuth } from '@/lib/api';
+import type { Exercise } from '@/types/exercise';
 import './AddExercises.css';
-
-interface Exercise {
-    id: string;
-    name: string;
-}
 
 interface AddExercisesProps {
     onAddExercise: (exercise: Exercise) => void;
