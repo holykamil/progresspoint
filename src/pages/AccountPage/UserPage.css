@@ -1,24 +1,21 @@
 .user-page {
     background: linear-gradient(180deg, #121212, #383838);
     min-width: 440px;
-    border: solid 1px red;
     color: white;
     min-height: 100vh;
 }
 
 .user-page-content {
     position: relative;
-    min-height: 100vh;
 
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    margin: 3% 14%;
+    margin: 0 14%;
     gap: 44px;
     border-radius: 14px;
-    padding: 1px 0px 1px 0px;
-    border: solid 1px red;
+    padding: 20px 0;
 }
 
 /* User Dashboard Container */

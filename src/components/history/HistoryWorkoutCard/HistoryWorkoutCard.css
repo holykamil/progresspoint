@@ -8,7 +8,7 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: space-between;
     gap: 32px;
 
     /* Animation properties */
@@ -54,6 +54,46 @@
 
 .history-workout-container:active {
     transform: translateY(0);
+}
+
+/* Workout Info Container */
+.history-workout-info {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Delete Button */
+.delete-workout-button {
+    background: transparent;
+    border: none;
+    color: #ff4739;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.delete-workout-button:hover:not(:disabled) {
+    color: #ff6b6b;
+    background: rgba(255, 71, 57, 0.1);
+    transform: scale(1.1);
+}
+
+.delete-workout-button:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.delete-workout-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 /* Workout Note */

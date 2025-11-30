@@ -1,8 +1,9 @@
 .header-wrapper {
     position: sticky;
-    top: 16px;
+    top: 0;
     z-index: 60;
-    margin: 0.7% 10%;
+    margin: 0 10%;
+    padding-top: 16px;
     border-radius: 16px;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
@@ -203,7 +204,7 @@
     }
 
     .header-logo {
-        content: url('../assets/images/logo-mobile.png');
+        content: url('@/assets/images/logo-mobile.png');
     }
 
     .header-popup {

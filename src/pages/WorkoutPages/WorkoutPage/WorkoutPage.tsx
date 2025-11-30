@@ -143,13 +143,14 @@ export function WorkoutPage() {
     const handleRemoveSet = (exerciseId: string, setId: string) => {
         setWorkoutExercises(workoutExercises.map(exercise => {
             if (exercise.id === exerciseId) {
+                const updatedSets = exercise.sets.filter(set => set.id !== setId);
                 return {
                     ...exercise,
-                    sets: exercise.sets.filter(set => set.id !== setId)
+                    sets: updatedSets
                 };
             }
             return exercise;
-        }));
+        }).filter(exercise => exercise.sets.length > 0)); // Remove exercise if no sets remain
     };
 
     const handleFinishWorkout = () => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { RiCloseFill } from "react-icons/ri";
 import type { Workout } from '@/types/workout';
-import UserImage from '@/assets/images/account-logo.png';
+import UserImage from '@/assets/images/account-image.png';
 import './WorkoutDetail.css';
 import { fetchProfilePicture } from '@/lib/userApi';
 

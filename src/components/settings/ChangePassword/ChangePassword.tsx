@@ -21,8 +21,8 @@ export function ChangePassword({ onClose, onSuccess }: ChangePasswordProps) {
         if (!newPassword) {
             return 'Please enter a new password';
         }
-        if (newPassword.length < 6) {
-            return 'New password must be at least 6 characters';
+        if (newPassword.length < 4) {
+            return 'New password must be at least 4 characters';
         }
         if (!confirmPassword) {
             return 'Please confirm your new password';

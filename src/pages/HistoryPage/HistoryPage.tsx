@@ -54,6 +54,26 @@ export function HistoryPage() {
         }, 300);
     }
 
+    function handleDeleteWorkout(workoutId: string) {
+        // Remove the deleted workout from the state
+        setWorkouts(prev => {
+            if (!prev) return null;
+            return {
+                ...prev,
+                workouts: prev.workouts.filter(w => w.id !== workoutId),
+                pagination: {
+                    ...prev.pagination,
+                    totalWorkouts: prev.pagination.totalWorkouts - 1
+                }
+            };
+        });
+
+        // Close detail view if the deleted workout was selected
+        if (selectedWorkout?.id === workoutId) {
+            handleCloseDetail();
+        }
+    }
+
     return (
         <main className="history-page">
             <Header />
@@ -94,6 +114,7 @@ export function HistoryPage() {
                                     workout={workout}
                                     index={index}
                                     onClick={handleWorkoutClick}
+                                    onDelete={handleDeleteWorkout}
                                 />
                             ))}
                         </>

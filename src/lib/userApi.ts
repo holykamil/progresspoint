@@ -12,8 +12,12 @@ export async function fetchProfilePicture(): Promise<string | null> {
         if (response.ok) {
             const data = await response.json();
             return data.profileImageUrl;
+        } else if (response.status === 404) {
+            // No profile picture set, this is expected - return null silently
+            return null;
         } else {
-            // No profile picture set, use default
+            // Other errors (500, etc) should be logged
+            console.error('Error fetching profile picture:', response.status);
             return null;
         }
     } catch (err) {

@@ -1,23 +1,21 @@
 .history-page {
     background: linear-gradient(180deg, #121212, #383838);
     min-width: 440px;
-    border: solid 1px red;
+    min-height: 100vh;
     color: white;
 }
 
 .history-page-content {
     position: relative;
-    min-height: 100vh;
 
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    margin: 3% 14%;
+    margin: 0 14%;
     gap: 14px;
     border-radius: 14px;
-    padding: 1px 0px 1px 0px;
-    border: solid 1px red;
+    padding: 20px 0;
 }
 
 /* Page Header */
@@ -26,6 +24,9 @@
     font-size: 28px;
     min-height: 60px;
     align-self: center;
+    margin: 0;
+    display: flex;
+    align-items: center;
 }
 
 /* Workouts List Container */

@@ -8,7 +8,7 @@ import { ChangePassword } from '@/components/settings/ChangePassword/ChangePassw
 import { ProfilePictureUpload } from '@/components/settings/ProfilePicture/ProfilePictureUpload';
 import { ProfilePictureDelete } from '@/components/settings/ProfilePicture/ProfilePictureDelete';
 import type { SettingsUserData } from '@/types/user';
-import DefaultUserImage from '../../assets/images/account-logo.png';
+import DefaultUserImage from '../../assets/images/account-image.png';
 import './Settings.css';
 
 export function SettingsPage() {

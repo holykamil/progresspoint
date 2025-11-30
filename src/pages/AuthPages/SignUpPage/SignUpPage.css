@@ -1,7 +1,7 @@
 .sign-up-page {
     display: flex;
     min-height: 100vh;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     background: linear-gradient(180deg, #121212, #383838);
     background-size: cover;
@@ -15,11 +15,10 @@
     justify-content: center;
     align-items: stretch;
     background: linear-gradient(180deg, #1F1F1F, #343434);
-    margin-top: 165px;
     border: 1px solid #505050;
     gap: 14px;
     border-radius: 14px;
-    padding: 60px 65px 130px;
+    padding: 60px 65px;
     width: 100%;
     max-width: 440px;
     min-width: 240px;
@@ -95,8 +94,7 @@
 /* Responsive tweaks */
 @media (max-width: 600px) {
     .sign-up-page-content {
-        margin-top: 80px;
-        padding: 40px 30px 60px;
+        padding: 40px 30px;
         max-width: 90%;
     }
 

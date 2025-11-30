@@ -52,6 +52,7 @@ export interface HistoryWorkoutCardProps {
     workout: Workout;
     index: number;
     onClick: (workoutId: string) => void;
+    onDelete?: (workoutId: string) => void;
     isSelected?: boolean;
     isSelectMode?: boolean;
 }
