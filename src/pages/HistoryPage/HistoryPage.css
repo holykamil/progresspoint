@@ -1,6 +1,6 @@
 .history-page {
     background: linear-gradient(180deg, #121212, #383838);
-    min-width: 440px;
+    min-width: 320px;
     min-height: 100vh;
     color: white;
 }
@@ -202,8 +202,8 @@
 
 @media (max-width: 480px) {
     .history-page-content {
-        margin: 5% 12%;
-        padding: 20px 0;
+        margin: 0 5%;
+        padding: 15px 0;
     }
 
     .history-page-header {

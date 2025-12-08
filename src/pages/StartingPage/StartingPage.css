@@ -2,7 +2,7 @@
     display: flex;
     min-height: 100vh;
     align-items: flex-start;
-    background-image: url('/public/background.png');
+    background-image: url('@/assets/images/background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -18,7 +18,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
-    /* space between logo and text */
+    max-width: 90vw;
 }
 
 /* Logo */
@@ -28,7 +28,7 @@
 
 .logo {
     width: 300px;
-    max-width: 70vw;
+    max-width: 80vw;
     height: auto;
 }
 
@@ -114,16 +114,61 @@
 }
 
 
-/* Small responsive tweaks */
-@media (max-width: 600px) {
-    .content {
-        margin-left: 20px;
-        margin-top: 30px;
+/* Responsive tweaks */
+@media (max-width: 760px) {
+    .starting-page {
+        background-image: url('@/assets/images/background-small.png');
+        align-items: center;
+        justify-content: center;
+    }
+
+    .starting-page-content {
+        margin-left: 40px;
+        margin-top: 40px;
+        margin-right: 40px;
+        max-width: calc(100vw - 80px);
     }
 
     .logo-container {
-        margin-bottom: 150px;
-        ;
+        margin-bottom: 140px;
+    }
+
+    .logo {
+        width: 250px;
+        max-width: 85vw;
+    }
+
+    .text-container {
+        font-size: clamp(28px, 8vw, 48px);
+    }
+
+    .button-container {
+        gap: 20px;
+        width: 100%;
+    }
+
+    .login-button,
+    .signin-button {
+        flex: 1;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 600px) {
+    .starting-page-content {
+        margin-left: 30px;
+        margin-top: 30px;
+        margin-right: 30px;
+        max-width: calc(100vw - 60px);
+    }
+
+    .logo-container {
+        margin-bottom: 100px;
+    }
+
+    .logo {
+        width: 220px;
+        max-width: 90vw;
     }
 
     .text-container {
@@ -132,16 +177,46 @@
 
     .button-container {
         gap: 15px;
+        flex-direction: column;
+        width: 100%;
     }
 
     .login-button,
     .signin-button {
+        width: 100%;
+        min-width: 0;
         justify-content: center;
     }
 }
 
-@media (max-width: 760px) {
-    .starting-page {
-        content: url('')
+@media (max-width: 480px) {
+    .starting-page-content {
+        margin-left: 20px;
+        margin-top: 25px;
+        margin-right: 20px;
+        max-width: calc(100vw - 40px);
+    }
+
+    .logo-container {
+        margin-bottom: 80px;
+    }
+
+    .logo {
+        width: 180px;
+    }
+
+    .text-container {
+        font-size: clamp(20px, 10vw, 32px);
+    }
+
+    .button-container {
+        gap: 12px;
+        margin-top: 15px;
+    }
+
+    .login-button,
+    .signin-button {
+        padding: 0.7em 1em;
+        font-size: clamp(11px, 3vw, 14px);
     }
 }

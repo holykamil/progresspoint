@@ -1,6 +1,6 @@
 .home-page {
     background: linear-gradient(180deg, #121212, #383838);
-    min-width: 440px;
+    min-width: 320px;
     min-height: 100vh;
     color: white;
 }
@@ -168,9 +168,15 @@
 }
 
 @media (max-width: 480px) {
+    .home-page-content {
+        margin: 0 5%;
+        padding: 15px 0;
+    }
+
     .home-page-header {
         font-size: 18px;
         line-height: 1.4;
+        text-align: center;
     }
 
     .home-page-section-title {

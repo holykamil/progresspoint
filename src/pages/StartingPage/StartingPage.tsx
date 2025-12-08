@@ -35,7 +35,7 @@ export function StartingPage() {
                 </h1>
                 <div className="button-container">
                     <NavLink to="/login" className="login-button">Log In</NavLink>
-                    <NavLink to="/signin" className="signin-button">Sign Up</NavLink>
+                    <NavLink to="/signup" className="signin-button">Sign Up</NavLink>
                 </div>
             </div>
         </main>

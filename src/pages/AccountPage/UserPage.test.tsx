@@ -23,7 +23,9 @@ describe('UserPage', () => {
             id: '1',
             email: 'test@example.com',
             username: 'testuser',
-            createdAt: '2024-01-01T00:00:00Z'
+            createdAt: '2024-01-01T00:00:00Z',
+            profileImageUrl: null
+
         },
         totalWorkouts: 10,
         currentStreak: 5,

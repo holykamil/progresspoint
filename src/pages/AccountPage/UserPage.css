@@ -1,6 +1,6 @@
 .user-page {
     background: linear-gradient(180deg, #121212, #383838);
-    min-width: 440px;
+    min-width: 320px;
     color: white;
     min-height: 100vh;
 }
@@ -200,6 +200,12 @@
 }
 
 @media (max-width: 480px) {
+    .user-page-content {
+        margin: 0 5%;
+        padding: 15px 0;
+        gap: 32px;
+    }
+
     .user-dashboard {
         padding: 24px 16px;
         border-radius: 16px;

@@ -48,7 +48,8 @@ describe('SettingsPage', () => {
             id: '1',
             email: 'test@example.com',
             username: 'testuser',
-            createdAt: '2024-01-01'
+            createdAt: '2024-01-01',
+            profileImageUrl: null
         },
         totalWorkouts: 10,
         currentStreak: 5,

@@ -51,7 +51,7 @@ describe('StartingPage', () => {
         renderStartingPage();
         const signupButton = screen.getByRole('link', { name: /sign up/i });
         expect(signupButton).toBeInTheDocument();
-        expect(signupButton).toHaveAttribute('href', '/signin');
+        expect(signupButton).toHaveAttribute('href', '/signup');
         expect(signupButton).toHaveClass('signin-button');
     });
 

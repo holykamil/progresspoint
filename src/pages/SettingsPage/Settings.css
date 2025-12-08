@@ -1,6 +1,6 @@
 .settings-page {
     background: linear-gradient(180deg, #121212, #383838);
-    min-width: 440px;
+    min-width: 320px;
     min-height: 100vh;
     color: white;
 }
@@ -446,6 +446,11 @@
 }
 
 @media (max-width: 480px) {
+    .settings-page-content {
+        margin: 0 5%;
+        padding: 15px 0;
+    }
+
     .settings-dashboard {
         padding: 20px 16px;
     }

@@ -28,6 +28,12 @@ export function LoginPage() {
         return null;
     }
 
+    function handleKeyDown(e: React.KeyboardEvent) {
+        if (e.key === 'Enter' && !loading) {
+            onSubmit(e as any);
+        }
+    }
+
     async function onSubmit(e: React.FormEvent) {
         e.preventDefault();
         const v = validate();
@@ -91,6 +97,7 @@ export function LoginPage() {
                     type="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
+                    onKeyDown={handleKeyDown}
                     disabled={loading}
                     required
                 />
@@ -101,6 +108,7 @@ export function LoginPage() {
                     type="password"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
+                    onKeyDown={handleKeyDown}
                     disabled={loading}
                     required
                 />

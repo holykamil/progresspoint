@@ -7,6 +7,7 @@
     border-radius: 16px;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    max-width: 100%;
 }
 
 .header {
@@ -221,9 +222,29 @@
 }
 
 @media (max-width: 480px) {
+    .header-wrapper {
+        margin: 0 5%;
+    }
+
+    .header {
+        padding: 6px 8px;
+    }
+
+    .middle-section {
+        gap: clamp(6px, 2vw, 12px);
+    }
+
+    .home-button,
+    .start-workout-button,
+    .history-button {
+        font-size: clamp(10px, 2.5vw, 13px);
+        padding: 0.35em 0.6em;
+    }
+
     .header-popup {
         min-width: 120px;
         border-radius: 10px;
+        right: 0;
     }
 
     .account-button,

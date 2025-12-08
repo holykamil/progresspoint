@@ -1,6 +1,6 @@
 .workout-page {
     background: linear-gradient(180deg, #121212, #383838);
-    min-width: 440px;
+    min-width: 320px;
     min-height: 100vh;
     color: white;
 }
@@ -310,11 +310,17 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-    min-width: 600px;
+    min-width: 320px;
     max-width: 95vw;
     max-height: 85vh;
     overflow-y: auto;
     animation: slideIn 0.3s ease-out;
+}
+
+@media (min-width: 600px) {
+    .popup-container {
+        min-width: 600px;
+    }
 }
 
 @keyframes fadeIn {
@@ -444,6 +450,11 @@
 }
 
 @media (max-width: 480px) {
+    .workout-page-content {
+        margin: 0 5%;
+        padding: 15px 0;
+    }
+
     .current-workout {
         padding: 20px 16px;
     }

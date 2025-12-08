@@ -28,6 +28,12 @@ export function SignUpPage() {
         return null;
     }
 
+    function handleKeyDown(e: React.KeyboardEvent) {
+        if (e.key === 'Enter' && !loading) {
+            onSubmit(e as any);
+        }
+    }
+
     async function onSubmit(e: React.FormEvent) {
         e.preventDefault();
         const v = validate();
@@ -78,6 +84,7 @@ export function SignUpPage() {
                     type="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
+                    onKeyDown={handleKeyDown}
                     disabled={loading}
                     required
                 />
@@ -88,6 +95,7 @@ export function SignUpPage() {
                     type="text"
                     value={username}
                     onChange={e => setUsername(e.target.value)}
+                    onKeyDown={handleKeyDown}
                     disabled={loading}
                     required
                 />
@@ -98,6 +106,7 @@ export function SignUpPage() {
                     type="password"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
+                    onKeyDown={handleKeyDown}
                     disabled={loading}
                     required
                 />
@@ -108,6 +117,7 @@ export function SignUpPage() {
                     type="password"
                     value={confirmPassword}
                     onChange={e => setConfirmPassword(e.target.value)}
+                    onKeyDown={handleKeyDown}
                     disabled={loading}
                     required
                 />
