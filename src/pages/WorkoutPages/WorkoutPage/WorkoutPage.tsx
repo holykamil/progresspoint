@@ -18,7 +18,7 @@ export function WorkoutPage() {
     const [isAddExerciseOpen, setIsAddExerciseOpen] = useState(false);
     const [isSubmitWorkoutOpen, setIsSubmitWorkoutOpen] = useState(false);
     const [isExitWarningOpen, setIsExitWarningOpen] = useState(false);
-    const [elapsedSeconds, setElapsedSeconds] = useState(60);
+    const [elapsedSeconds, setElapsedSeconds] = useState(0);
     const [isTimerRunning, setIsTimerRunning] = useState(true);
     const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
     const [pendingNavigation, setPendingNavigation] = useState<string | null>(null);
@@ -127,6 +127,28 @@ export function WorkoutPage() {
     };
 
     const handleSetChange = (exerciseId: string, setId: string, field: 'weight' | 'reps', value: string) => {
+        // Allow empty string for clearing the input
+        if (value === '') {
+            setWorkoutExercises(workoutExercises.map(exercise => {
+                if (exercise.id === exerciseId) {
+                    return {
+                        ...exercise,
+                        sets: exercise.sets.map(set =>
+                            set.id === setId ? { ...set, [field]: value } : set
+                        )
+                    };
+                }
+                return exercise;
+            }));
+            return;
+        }
+
+        // Only accept positive numbers (including decimals for weight)
+        const numValue = parseFloat(value);
+        if (isNaN(numValue) || numValue < 0) {
+            return; // Reject invalid or negative values
+        }
+
         setWorkoutExercises(workoutExercises.map(exercise => {
             if (exercise.id === exerciseId) {
                 return {
@@ -138,6 +160,14 @@ export function WorkoutPage() {
             }
             return exercise;
         }));
+    };
+
+    // Prevent non-numeric characters from being entered
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        // Block: minus (-), plus (+), and 'e' (scientific notation)
+        if (e.key === '-' || e.key === '+' || e.key === 'e' || e.key === 'E') {
+            e.preventDefault();
+        }
     };
 
     const handleRemoveSet = (exerciseId: string, setId: string) => {
@@ -263,15 +293,21 @@ export function WorkoutPage() {
                                                         type="number"
                                                         className="weight-input"
                                                         placeholder="0"
+                                                        min="0"
+                                                        step="any"
                                                         value={set.weight}
                                                         onChange={(e) => handleSetChange(exercise.id, set.id, 'weight', e.target.value)}
+                                                        onKeyDown={handleKeyDown}
                                                     />
                                                     <input
                                                         type="number"
                                                         className="reps-input"
                                                         placeholder="0"
+                                                        min="0"
+                                                        step="1"
                                                         value={set.reps}
                                                         onChange={(e) => handleSetChange(exercise.id, set.id, 'reps', e.target.value)}
+                                                        onKeyDown={handleKeyDown}
                                                     />
                                                     <button
                                                         className="remove-set-button"
@@ -323,7 +359,7 @@ export function WorkoutPage() {
             {isSubmitWorkoutOpen && (
                 <SubmitWorkout
                     workoutExercises={workoutExercises}
-                    durationMinutes={Math.floor(elapsedSeconds / 60)}
+                    durationMinutes={Math.max(1, Math.ceil(elapsedSeconds / 60))}
                     onClose={() => {
                         setIsSubmitWorkoutOpen(false);
                         setIsTimerRunning(true);

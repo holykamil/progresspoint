@@ -5,10 +5,14 @@ interface ProtectedRouteProps {
     children: React.ReactNode;
 }
 
+/**
+ * Komponent Higher-Order Component (HOC) zabezpieczający chronione trasy.
+ * Sprawdza czy użytkownik jest zalogowany przed wyświetleniem zawartości.
+ */
 export function ProtectedRoute({ children }: ProtectedRouteProps) {
     const { user, isLoading } = useAuth();
 
-    // Show loading state while checking authentication
+    // Wyświetl ekran ładowania podczas weryfikacji tokenu
     if (isLoading) {
         return (
             <div className="loading-container">
@@ -17,11 +21,11 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
         );
     }
 
-    // Redirect to login if not authenticated
+    // Przekieruj do strony logowania jeśli użytkownik niezalogowany
     if (!user) {
         return <Navigate to="/login" replace />;
     }
 
-    // Render protected content
+    // Renderuj chronioną zawartość jeśli użytkownik zalogowany
     return <>{children}</>;
 }

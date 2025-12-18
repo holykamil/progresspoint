@@ -2,50 +2,64 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './SignUpPage.css';
 
+/**
+ * Komponent strony rejestracji.
+ * Obsługuje formularz rejestracji, walidację danych i tworzenie nowego konta.
+ */
 export function SignUpPage() {
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState(false);
 
+    // Stany komponentu
+    const [email, setEmail] = useState('');                         // Adres email
+    const [username, setUsername] = useState('');                   // Nazwa użytkownika
+    const [password, setPassword] = useState('');                   // Hasło
+    const [confirmPassword, setConfirmPassword] = useState('');     // Potwierdzenie hasła
+    const [error, setError] = useState<string | null>(null);        // Komunikat błędu
+    const [loading, setLoading] = useState(false);                  // Flaga ładowania
+
+    // Wyrażenie regularne do walidacji formatu adresu email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
+    // Walidacja danych wejściowych formularza rejestracji
     function validate() {
         if (!email || !username || !password || !confirmPassword) {
-            return 'Please fill in all fields.';
+            return 'Please fill in all fields.'; // Sprawdź czy wszystkie pola wypełnione
         }
         if (!emailRegex.test(email)) {
-            return 'Please enter a valid email address.';
+            return 'Please enter a valid email address.'; // Waliduj format email
         }
 
         if (password !== confirmPassword) {
-            return 'Passwords do not match.';
+            return 'Passwords do not match.'; // Sprawdź czy hasła się zgadzają
         }
-        return null;
+        return null; // Brak błędów walidacji
     }
 
+    // Obsługa klawisza Enter - automatyczne wysłanie formularza
     function handleKeyDown(e: React.KeyboardEvent) {
         if (e.key === 'Enter' && !loading) {
-            onSubmit(e as any);
+            const syntheticEvent = e as unknown as React.FormEvent;
+            onSubmit(syntheticEvent); // Wyślij formularz po naciśnięciu Enter
         }
     }
 
+    // Funkcja obsługująca wysłanie formularza rejestracji
     async function onSubmit(e: React.FormEvent) {
-        e.preventDefault();
+        e.preventDefault(); // Zapobiegnij domyślnemu odświeżeniu strony
+
+        // Waliduj dane wejściowe
         const v = validate();
         if (v) {
-            setError(v);
+            setError(v); // Wyświetl błąd walidacji
             return;
         }
 
-        setError(null);
-        setLoading(true);
+        setError(null);      // Wyczyść poprzednie błędy
+        setLoading(true);    // Ustaw stan ładowania
 
         try {
+            // Wyślij żądanie POST do endpointa rejestracji
             const res = await fetch('/api/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -55,11 +69,12 @@ export function SignUpPage() {
             const data = await res.json();
 
             if (!res.ok) {
+                // Błąd rejestracji - wyświetl komunikat
                 setError(data.message || 'Signup failed. Please try again.');
                 return;
             }
 
-            // Success - redirect to login page
+            // Sukces - przekieruj do strony logowania z komunikatem
             console.log('Signup successful:', data);
             navigate('/login', {
                 state: { message: 'Account created successfully! Please log in.' }
@@ -69,7 +84,7 @@ export function SignUpPage() {
             console.error('Signup error:', err);
             setError('Network error. Please check your connection and try again.');
         } finally {
-            setLoading(false);
+            setLoading(false); // Zakończ stan ładowania
         }
     }
 
